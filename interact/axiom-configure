@@ -202,7 +202,7 @@ echo -e "${Blue}Would you like to use Bash, Oh My Zsh or add stuff manually? ${C
     echo -e "${Red}Add the following lines to your shell-config${Color_Off}"
     echo -e "§{Red}\texport GOPATH=\$HOME/go${Color_Off}"
     echo -e "§{Red}\texport PATH=\$GOPATH/bin:/usr/local/go/bin:$PATH${Color_Off}"
-    echo -e "§{Red}\texport PATH=\"\$PATH:\$HOME/.axiom/interact\""${Color_Off}"
+    echo -e "§{Red}\texport PATH=\"\$PATH:\$HOME/.axiom/interact\"${Color_Off}"
     echo -e "§{Red}\tsource $HOME/.axiom/functions/autocomplete.zsh${Color_Off}"
    break
    ;;

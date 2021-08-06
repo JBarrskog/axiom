@@ -149,9 +149,9 @@ fi
 
 if [ $BASEOS == "Linux" ]; then
 # Pick your shell
-echo -e "${Blue}Would you like to use Bash or Oh My Zsh? ${Color_Off}"
+echo -e "${Blue}Would you like to use Bash, Oh My Zsh or add stuff manually? ${Color_Off}"
  PS3="Please select an option : "
-  choices=("bash" "zsh")
+  choices=("bash" "zsh" "manual")
   select choice in "${choices[@]}"; do
    case $choice in
    bash)
@@ -189,6 +189,21 @@ echo -e "${Blue}Would you like to use Bash or Oh My Zsh? ${Color_Off}"
     echo "source $HOME/.axiom/functions/autocomplete.zsh" >>~/.zshrc 
     source ${HOME}/.zshrc
     SHELL=$(which zsh)
+   break
+   ;;
+  manual)
+    echo -e "${Blue}Installing Golang${Color_Off}"
+    wget https://golang.org/dl/go1.16.3.linux-amd64.tar.gz
+    eval $RAISE_PRIV_CMD tar -C /usr/local -xzf go1.16.3.linux-amd64.tar.gz 
+    rm go1.16.3.linux-amd64.tar.gz
+    mkdir -p "${HOME}/go"
+    export GOPATH=$HOME/go
+    export PATH=$GOPATH/bin:/usr/local/go/bin:$PATH
+    echo -e "${Red}Add the following lines to your shell-config${Color_Off}"
+    echo -e "§{Red}\texport GOPATH=\$HOME/go${Color_Off}"
+    echo -e "§{Red}\texport PATH=\$GOPATH/bin:/usr/local/go/bin:$PATH${Color_Off}"
+    echo -e "§{Red}\texport PATH=\"\$PATH:\$HOME/.axiom/interact\""${Color_Off}"
+    echo -e "§{Red}\tsource $HOME/.axiom/functions/autocomplete.zsh${Color_Off}"
    break
    ;;
 esac
